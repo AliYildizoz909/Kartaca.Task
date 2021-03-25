@@ -1,0 +1,105 @@
+﻿@model RequestObj[]
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+@section Scripts
+{
+    <script src="~/lib/microsoft/signalr/dist/browser/signalr.min.js"></script>
+    <script src="~/lib/Chart.js/Chart.min.js"></script>
+    <script src="~/lib/chartjs-adapter-moment/chartjs-adapter-moment.js"></script>
+    <script src="~/lib/moment.js/moment.min.js"></script>
+    <script type="text/javascript">
+
+        var connection = new signalR.HubConnectionBuilder().configureLogging(signalR.LogLevel.Debug).withAutomaticReconnect([1000, 1000, 3000, 3000]).withUrl("https://localhost:5003/requesthub").build();
+
+        function statusShow() {
+            $("#conStatus").text(connection.connectionState);
+        }
+
+        function start() {
+            connection.start().then(() => {
+                statusShow();
+                connection.invoke("GetAllRequest").catch((err) => console.log(err));;
+            }).catch((err) => {
+                setTimeout(() => start(), 2000);
+            });
+        }
+
+        start();
+
+        connection.onclose(() => {
+            statusShow();
+            start();
+        });
+        connection.on("ReceiveRequest",
+            (request) => {
+                addData(moment(request.requestTimeStamp).format("hh:mm"), request.requestTime, request.methodName);
+            });
+        connection.on("ReceiveAllRequest",
+            (requests) => {
+                console.log(requests);
+                requests.forEach((request) => {
+                    addData(moment(request.requestTimeStamp).format("hh:mm"), request.requestTime, request.methodName);
+                });
+            });
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: [],
+                datasets: [{
+                    label: 'GET',
+                    data: [],
+                    backgroundColor: 'rgba(0, 0, 255, 0.1)',
+                    borderColor: 'rgba(0, 0, 255, 1)',
+                    borderWidth: 1,
+                    lineTension: 0
+                }, {
+                    label: 'POST',
+                    data: [],
+                    backgroundColor: 'rgba(0, 255, 0, 0.1)',
+                    borderColor: 'rgba(0, 255, 0, 1)',
+                    borderWidth: 1,
+                    lineTension: 0
+                }, {
+                    label: 'PUT',
+                    data: [],
+                    backgroundColor: 'rgba(255, 165, 0, 0.1)',
+                    borderColor: 'rgba(255, 127, 0, 1)',
+                    borderWidth: 1,
+                    lineTension: 0
+                }, {
+                    label: 'DELETE',
+                    data: [],
+                    backgroundColor: 'rgba(255, 0, 0, 0.1)',
+                    borderColor: 'rgba(255, 0, 0, 1)',
+                    borderWidth: 1,
+                    lineTension: 0
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+        function createChart() {
+
+        }
+        function addData(timeStamp, reqTime, methodName) {
+            myChart.data.labels.push(timeStamp);
+            myChart.data.datasets.forEach((dataset) => {
+                if (dataset.label.toLowerCase() === methodName.toLowerCase()) {
+                    dataset.data.push(reqTime);
+                }
+            });
+            myChart.update();
+        }
+    </script>
+}
+<canvas id="myChart" width="720" height="200"></canvas>

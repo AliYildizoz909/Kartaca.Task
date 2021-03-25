@@ -31,7 +31,7 @@ namespace Kartaca.Task
                 allByteContent += " " + File.ReadAllText(filePair.FilePath);
             }
 
-            Console.WriteLine("----------------Task descriptions-----------------------------");
+            Console.WriteLine("----------------------------Task descriptions-----------------------------");
             Console.WriteLine(SolveFileContent(allByteContent));
 
         }

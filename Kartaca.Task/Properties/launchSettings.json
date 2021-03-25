@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Kartaca.Task": {
+      "commandName": "Project"
+    },
+    "Docker": {
+      "commandName": "Docker"
+    }
+  }
+}

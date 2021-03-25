@@ -1,0 +1,7 @@
+2021-03-21 11:23:00.7413 Info Message Template Auto Format enabled
+2021-03-21 11:23:00.7702 Info Loading assembly: NLog.Web.AspNetCore
+2021-03-21 11:23:00.8483 Info Adding target FileTarget(Name=allfile)
+2021-03-21 11:23:00.8561 Info Adding target FileTarget(Name=request)
+2021-03-21 11:23:00.8658 Warn Skipping unrecognized property 'tolower=true` for ${level} (NLog.LayoutRenderers.LevelLayoutRenderer)
+2021-03-21 11:23:00.8932 Info Adding target ConsoleTarget(Name=lifetimeConsole)
+2021-03-21 11:23:00.9403 Info Validating config: TargetNames=allfile, lifetimeConsole, request, ConfigItems=30, FilePath=/app/bin/Debug/netcoreapp3.1/nlog.config
