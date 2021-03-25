@@ -11,7 +11,7 @@
     <script src="~/lib/moment.js/moment.min.js"></script>
     <script type="text/javascript">
 
-        var connection = new signalR.HubConnectionBuilder().configureLogging(signalR.LogLevel.Debug).withAutomaticReconnect([1000, 1000, 3000, 3000]).withUrl("https://localhost:5003/requesthub").build();
+        var connection = new signalR.HubConnectionBuilder().configureLogging(signalR.LogLevel.Debug).withAutomaticReconnect([1000, 1000, 3000, 3000]).withUrl("http://localhost:5003/requesthub").build();
 
         function statusShow() {
             $("#conStatus").text(connection.connectionState);
