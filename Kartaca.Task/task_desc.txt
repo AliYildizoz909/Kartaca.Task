@@ -1,0 +1,36 @@
+Tebrikler Ali Yldz?z, g?rev i?eriine ulatn!
+
+te beklediimiz g?revin gereksinimleri;
+
+Tercih ettiiniz bir dil ile (tercihen Java / Go / PHP / Python) yaplacak bir REST API'da GET, POST, PUT ve DELETE isteklerini karlayabilecek 4 farkl endpoint sunulmaldr. POST ve PUT metotlar, istekleri bo request body ile kabul edebilmelidir.
+
+Bu API'ye gelen her istek i?in random 0-3 sn arasnda baarl bir yant d?nmeli ve yant d?n?lmeden hemen ?nce "{metot tipi},{istek cevaplama ms},{timestamp}" gibi bir i?erik ile log dosyasna istein ne kadar s?rd?? yazlmaldr. ?rn log: "GET,1000,1614679220"
+
+Async bir job, log dosyasna anlk olarak yazlan satrlar alp Kafka'ya belirlenen bir formatta g?ndermelidir.
+
+Bir consumer Kafka'ya g?nderilen log bilgisini yakalayp, uygun g?r?len bir veritabanna yazmaldr (RDBMS veya NoSQL gibi).
+
+Son 1 saatteki API isteklerinin ne kadar s?rede tamamlandklar bir dashboard ekrannda grafik olarak g?sterilmeli ve grafik canl olarak g?ncellenmelidir.
+
+stek tiplerine (PUT,DELETE gibi) g?re ayr renklendirme yaplmaldr.
+
+?rnek grafik ekran g?r?nt?s?;
+
+https://kartaca.com/wp-content/uploads/2021/03/cekirdekten_yetisenler_usg_dashboard.png
+
+
+Kod deposunu bize iletirken senden istediimiz sana ?zel anahtar kodu: gAAAAABgUIsuWBHZ5O_f6ypM66j-DJDBlTIkALrm7l2kld4_QTXDwa3pAYKDwtNZwHvPC0V65RvZHEWdMdU_AoH6yQJVFdp1O3peH17_jDW8UnAoA_5qTgRq-nQnTKbJXlZMNmcazLnrwfMwIMQBAEXNSoGqRHiWdWM6mwUXwT6ccIoG9XLcIbDXN6cRnMgcb2r6sINQBWyTok5QRAHXS6zopodcmwe1yg==
+
+
+Notlar;
+
+* Uygulamann ve ara y?z?n Docker ile nasl derlenip ?alr hale getirilecei README olarak yazlm olmaldr. Docker-compose ?zerinden tek bir komut ile ?alacak ekilde servis edilmelidir. Veritaban gibi bamllklar da i?erisinde yer almaldr.
+
+* README i?erisinde servis endpoint'lerine nasl istek atlaca, ara y?z adresinin ne olduu gibi projenin nasl ?altrlacana dair bilgiler yer almaldr.
+
+* Yukarda verilen sana ?zel anahtar kodu da README i?erisine eklenmelidir.
+
+* G?rev i?eriine ulamak i?in kullanlan kod ve proje GitHub, GitLab, Bitbucket gibi eriime a?k bir repo'ya g?nderilerek, balant adresi insankaynaklari@kartaca.com'a iletilmelidir. Kod deposu ?zerinden paylam salanamyorsa, indirilebilir dosyalara ulamamz i?in bir dosya/balant iletilmelidir.
+
+
+G?revlerdeki t?m gereksinimleri yerine getiremediyseniz bile, moralinizi bozmayn ve tamamladnz kadarn bizimle mutlaka paylan.
